@@ -10,7 +10,7 @@ public class Checking {
 
         final String state = strs[0];
         final String cardUUID = strs[1];
-        final long timestamp = Long.parseLong(strs[2]);
+        final Long timestamp = Long.parseLong(strs[2]);
         final String busId = strs[3];
         final String terminalId = strs[4];
         return new Checking(state, cardUUID, timestamp, busId, terminalId);
@@ -21,13 +21,13 @@ public class Checking {
 
     private final String state;
     private final String cardUUID;
-    private final long timestamp;
+    private final Long timestamp;
     private final String busId;
     private final String terminalId;
 
     private final boolean checkIn;
 
-    public Checking(String state, String cardUUID, long timestamp, String busId, String terminalId) {
+    public Checking(String state, String cardUUID, Long timestamp, String busId, String terminalId) {
         this.state = state;
         this.cardUUID = cardUUID;
         this.timestamp = timestamp;
@@ -45,7 +45,7 @@ public class Checking {
         return cardUUID;
     }
 
-    public long getTimestamp() {
+    public Long getTimestamp() {
         return timestamp;
     }
 
@@ -59,5 +59,9 @@ public class Checking {
 
     public boolean isCheckIn() {
         return checkIn;
+    }
+
+    public String getDescription() {
+        return String.format("%s-%s-%s-%s-%s", state, cardUUID, timestamp, busId, terminalId);
     }
 }
