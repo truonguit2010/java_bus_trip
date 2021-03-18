@@ -12,6 +12,10 @@ public class Trip {
         this.tripTime = checkOut.getTimestamp() - checkIn.getTimestamp();
     }
 
+    public long getTripTime() {
+        return tripTime;
+    }
+
     public Checking getCheckIn() {
         return checkIn;
     }
@@ -24,9 +28,7 @@ public class Trip {
         return checkIn.getCardUUID();
     }
 
-    public long getTripTime() {
-        return tripTime;
-    }
+
 
     public boolean validate() {
         return checkIn.isCheckIn() && !checkOut.isCheckIn() //

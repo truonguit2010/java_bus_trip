@@ -8,18 +8,18 @@ public class Checking {
     public static Checking createCheckingFromRaw(String rawString) {
         String[] strs = rawString.split("-");
 
-        final String state = strs[0];
+        final String gate = strs[0];
         final String cardUUID = strs[1];
         final Long timestamp = Long.parseLong(strs[2]);
         final String busId = strs[3];
         final String terminalId = strs[4];
-        return new Checking(state, cardUUID, timestamp, busId, terminalId);
+        return new Checking(gate, cardUUID, timestamp, busId, terminalId);
     }
 
-    public final static String STATE_IN = "IN";
-    public final static String STATE_OUT = "OUT";
+    public final static String GATE_IN = "IN";
+    public final static String GATE_OUT = "OUT";
 
-    private final String state;
+    private final String gate;
     private final String cardUUID;
     private final Long timestamp;
     private final String busId;
@@ -27,18 +27,18 @@ public class Checking {
 
     private final boolean checkIn;
 
-    public Checking(String state, String cardUUID, Long timestamp, String busId, String terminalId) {
-        this.state = state;
+    public Checking(String gate, String cardUUID, Long timestamp, String busId, String terminalId) {
+        this.gate = gate;
         this.cardUUID = cardUUID;
         this.timestamp = timestamp;
         this.busId = busId;
         this.terminalId = terminalId;
 
-        this.checkIn = STATE_IN.equals(state);
+        this.checkIn = GATE_IN.equals(gate);
     }
 
-    public String getState() {
-        return state;
+    public String getGate() {
+        return gate;
     }
 
     public String getCardUUID() {
@@ -62,6 +62,6 @@ public class Checking {
     }
 
     public String getDescription() {
-        return String.format("%s-%s-%s-%s-%s", state, cardUUID, timestamp, busId, terminalId);
+        return String.format("%s-%s-%s-%s-%s", gate, cardUUID, timestamp, busId, terminalId);
     }
 }

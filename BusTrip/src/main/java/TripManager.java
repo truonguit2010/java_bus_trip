@@ -3,8 +3,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class TripManager {
 
-    private final Map<String, Map<Long, Trip>> tripsByCardId;
-
     private Comparator<Checking> checkingTimeComparator = new Comparator<Checking>() {
         @Override
         public int compare(Checking o1, Checking o2) {
@@ -18,8 +16,14 @@ public class TripManager {
         }
     };
 
+    private final Map<String, Map<Long, Trip>> tripsByCardId;
+//    private final Map<Long, Map<String, Trip>> tripsByDay;
+//    private final Map<String, Map<String, Trip>> tripsByBus;
+
     public TripManager() {
         tripsByCardId = new ConcurrentHashMap<>();
+//        tripsByDay = new ConcurrentHashMap<>();
+//        tripsByBus = new ConcurrentHashMap<>();
     }
 
     public void register(String cardId) {
@@ -76,6 +80,10 @@ public class TripManager {
 
     public Map<Long, Trip> getTripsByCardId(String cardId) {
         return tripsByCardId.get(cardId);
+    }
+
+    public int countTrips(String cardId) {
+        return tripsByCardId.get(cardId).size();
     }
 
     public Trip getTrip(String cardId, Long tripCheckInTimestamp) {
